@@ -100,12 +100,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public String updateEmployee(EmployeeUpdateDTO employeeUpdateDTO) {
-        Optional<Employee> optionalEmployee = employeeRepository.findById(employeeUpdateDTO.getId());
-        if (optionalEmployee.isPresent()) {
-            Employee employee = optionalEmployee.get();
-            employee.setFirst_Name(employeeUpdateDTO.getFirstName());
-            employee.setLast_name(employeeUpdateDTO.getLastName());
-            employee.setEmail(employeeUpdateDTO.getEmail());
+        logger.info("Updating employee with ID: {}", employeeUpdateDTO.getId());
+        return employeeRepository.findById(employeeUpdateDTO.getId())
+                .map(employee -> {
+                    logger.info("Employee found for update: {}", employee);
+                    employee.setFirst_Name(employeeUpdateDTO.getFirstName());
+                    employee.setLast_name(employeeUpdateDTO.getLastName());
+                    employee.setEmail(employeeUpdateDTO.getEmail());
 
             if (employeeUpdateDTO.getEmployeeDetails() != null) {
                 EmployeeDetailsUpdateDTO detailsDTO = employeeUpdateDTO.getEmployeeDetails();
