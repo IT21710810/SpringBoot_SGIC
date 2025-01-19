@@ -159,8 +159,8 @@ public class EmployeeServiceImpl implements EmployeeService {
             logger.info("Fetched {} employees successfully.", employeeDTOList.size());
             return employeeDTOList;
         } catch (Exception e) {
-            logger.error("Error fetching all employees:", e);
-            throw new RuntimeException("Error fetching all employees");
+            logger.error("Error fetching employees: {}", e.getMessage(), e);
+            throw new RuntimeException("Error fetching employees.");
         }
     }
 
