@@ -59,8 +59,8 @@ public class EmployeeServiceImpl implements EmployeeService {
             logger.info("Employee saved successfully: {}", employee);
             return "Employee saved successfully.";
         } catch (Exception e) {
-            logger.error("Error while saving employee: " + e.getMessage());
-            return "Error while saving";
+            logger.error("Error saving employee: {}", e.getMessage(), e);
+            return "Error saving employee.";
         }
     }
 
