@@ -148,7 +148,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
                 // Check if EmployeeDetails exists and add it to EmployeeDTO
                 if (employee.getEmployeeDetails() != null) {
-                    EmployeeDetailsSaveDTO detailsDTO = new EmployeeDetailsSaveDTO(
+                    employeeDTO.setEmployeeDetails(new EmployeeDetailsSaveDTO(
                             employee.getEmployeeDetails().getId(),
                             employee.getEmployeeDetails().getDepartment(),
                             employee.getEmployeeDetails().getJobTitle(),
