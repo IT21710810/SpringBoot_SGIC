@@ -108,24 +108,15 @@ public class EmployeeServiceImpl implements EmployeeService {
                     employee.setLast_name(employeeUpdateDTO.getLastName());
                     employee.setEmail(employeeUpdateDTO.getEmail());
 
-            if (employeeUpdateDTO.getEmployeeDetails() != null) {
-                EmployeeDetailsUpdateDTO detailsDTO = employeeUpdateDTO.getEmployeeDetails();
-                EmployeeDetails details = employee.getEmployeeDetails();
-                if (details == null) {
-                    details = new EmployeeDetails(
-                            detailsDTO.getId(),
-                            detailsDTO.getDepartment(),
-                            detailsDTO.getJobTitle(),
-                            detailsDTO.getAddress(),
-                            employee
-                    );
-                } else {
-                    details.setDepartment(detailsDTO.getDepartment());
-                    details.setJobTitle(detailsDTO.getJobTitle());
-                    details.setAddress(detailsDTO.getAddress());
-                }
-                employee.setEmployeeDetails(details);
-            }
+                    if (employeeUpdateDTO.getEmployeeDetails() != null) {
+                        EmployeeDetails details = Optional.ofNullable(employee.getEmployeeDetails())
+                                .orElse(new EmployeeDetails());
+                        details.setDepartment(employeeUpdateDTO.getEmployeeDetails().getDepartment());
+                        details.setJobTitle(employeeUpdateDTO.getEmployeeDetails().getJobTitle());
+                        details.setAddress(employeeUpdateDTO.getEmployeeDetails().getAddress());
+                        details.setEmployee(employee);
+                        employee.setEmployeeDetails(details);
+                    }
 
                     employeeRepository.save(employee);
                     logger.info("Employee updated successfully: {}", employee);
