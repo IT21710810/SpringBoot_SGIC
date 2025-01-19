@@ -40,14 +40,16 @@ public class EmployeeServiceImpl implements EmployeeService {
                     employeeDTO.getEmail()
             );
 
-            // Create EmployeeDetails and associate with the Employee
-            EmployeeDetails employeeDetails = new EmployeeDetails(
-                    employeeDTO.getEmployeeDetails().getId(),
-                    employeeDTO.getEmployeeDetails().getDepartment(),
-                    employeeDTO.getEmployeeDetails().getJobTitle(),
-                    employeeDTO.getEmployeeDetails().getAddress(),
-                    employee // This assumes the relationship is being set on both ends (Employee and EmployeeDetails)
-            );
+            if (employeeDTO.getEmployeeDetails() != null) {
+                EmployeeDetails details = new EmployeeDetails(
+                        employeeDTO.getEmployeeDetails().getId(),
+                        employeeDTO.getEmployeeDetails().getDepartment(),
+                        employeeDTO.getEmployeeDetails().getJobTitle(),
+                        employeeDTO.getEmployeeDetails().getAddress(),
+                        employee
+                );
+                employee.setEmployeeDetails(details);
+            }
 
             // Set employeeDetails to employee
             employee.setEmployeeDetails(employeeDetails);
