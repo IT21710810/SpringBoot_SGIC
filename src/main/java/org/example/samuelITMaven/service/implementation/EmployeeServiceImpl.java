@@ -153,8 +153,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                             employee.getEmployeeDetails().getDepartment(),
                             employee.getEmployeeDetails().getJobTitle(),
                             employee.getEmployeeDetails().getAddress()
-                    );
-                    employeeDTO.setEmployeeDetails(detailsDTO);
+                    ));
                 }
 
                 logger.info("Employees fetched successfully.");
