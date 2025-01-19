@@ -138,9 +138,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 throw new RuntimeException("No employees found.");
             }
 
-            List<EmployeeDTO> employeeDTOList = new ArrayList<>();
-            for (Employee employee : getAllEmployee) {
-                // Build EmployeeDTO with EmployeeDetails
+            List<EmployeeDTO> employeeDTOList = employees.stream().map(employee -> {
                 EmployeeDTO employeeDTO = new EmployeeDTO(
                         employee.getId(),
                         employee.getFirst_Name(),
