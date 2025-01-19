@@ -156,9 +156,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                     ));
                 }
 
-                logger.info("Employees fetched successfully.");
-                employeeDTOList.add(employeeDTO);
-            }
+            logger.info("Fetched {} employees successfully.", employeeDTOList.size());
             return employeeDTOList;
         } catch (Exception e) {
             logger.error("Error fetching all employees:", e);
