@@ -130,10 +130,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<EmployeeDTO> getAllEmployee() {
+        logger.info("Fetching all employees.");
         try {
-            logger.info("Fetching all employees.");
-            List<Employee> getAllEmployee = employeeRepository.findAll();
-            if (getAllEmployee.isEmpty()) {
+            List<Employee> employees = employeeRepository.findAll();
+            if (employees.isEmpty()) {
                 logger.warn("No employees found.");
                 throw new RuntimeException("No employees found.");
             }
