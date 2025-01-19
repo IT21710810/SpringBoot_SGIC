@@ -124,11 +124,14 @@ public class EmployeeServiceImpl implements EmployeeService {
                 employee.setEmployeeDetails(details);
             }
 
-            employeeRepository.save(employee);
-            return "Employee updated successfully.";
-        } else {
-            throw new RuntimeException("No employee found with ID: " + employeeUpdateDTO.getId());
-        }
+                    employeeRepository.save(employee);
+                    logger.info("Employee updated successfully: {}", employee);
+                    return "Employee updated successfully.";
+                })
+                .orElseThrow(() -> {
+                    logger.warn("No employee found with ID: {}", employeeUpdateDTO.getId());
+                    return new RuntimeException("No employee found with ID: " + employeeUpdateDTO.getId());
+                });
     }
 
     @Override
