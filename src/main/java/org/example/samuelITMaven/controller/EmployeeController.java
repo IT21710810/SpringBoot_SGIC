@@ -16,9 +16,12 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @PostMapping("/save")
-    public ResponseEntity<String> saveEmployee(@RequestBody EmployeeDTO employeeDTO) {
-        String response = employeeService.saveEmployee(employeeDTO);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<StandardResponse> saveEmployee(@RequestBody EmployeeDTO employeeDTO) {
+        StandardResponse response = employeeService.saveEmployee(employeeDTO);
+        return new ResponseEntity<>(
+                response,
+                HttpStatus.valueOf(response.getStatusCode())
+        );
     }
 //http://localhost:8080/get-by-id?id=5
     @GetMapping("/get-by-id")
