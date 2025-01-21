@@ -28,15 +28,5 @@ public class StandardResponse {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
+    // Optionally, you can add setters if required.
 }
