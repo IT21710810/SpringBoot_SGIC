@@ -20,7 +20,9 @@ public class EmployeeController {
         StandardResponse response = employeeService.saveEmployee(employeeDTO);
         return createResponseEntity(response);
     }
-//http://localhost:8080/get-by-id?id=5
+
+
+    // http://localhost:8080/api/v1/employee/get-by-id?id=5
     @GetMapping("/get-by-id")
     public ResponseEntity<EmployeeDTO> getEmployeeById(@RequestParam long id) {
         EmployeeDTO employeeDTO = employeeService.getId(id);
