@@ -71,27 +71,37 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
     @Override
-    public EmployeeDTO getId(long id) {
-        return employeeRepository.findById(id).map(employee -> {
-            EmployeeDTO employeeDTO = new EmployeeDTO(
-                    employee.getId(),
-                    employee.getFirst_Name(),
-                    employee.getLast_name(),
-                    employee.getEmail()
-            );
-            if (employee.getEmployeeDetails() != null) {
-                EmployeeDetailsSaveDTO detailsDTO = new EmployeeDetailsSaveDTO(
-                        employee.getEmployeeDetails().getId(),
-                        employee.getEmployeeDetails().getDepartment(),
-                        employee.getEmployeeDetails().getJobTitle(),
-                        employee.getEmployeeDetails().getAddress()
-                );
-                employeeDTO.setEmployeeDetails(detailsDTO);
-            }
-            return employeeDTO;
-        }).orElseThrow(() -> new RuntimeException("Employee not found with ID: " + id));
+    public StandardResponse getEmployeeById(long id) {
+        logger.info("Fetching employee with ID: {}", id);
+        try {
+            return employeeRepository.findById(id)
+                    .map(employee -> {
+                        logger.info("Employee found: {}", employee);
+                        EmployeeDTO employeeDTO = new EmployeeDTO(
+                                employee.getId(),
+                                employee.getFirst_Name(),
+                                employee.getLast_name(),
+                                employee.getEmail()
+                        );
+                        if (employee.getEmployeeDetails() != null) {
+                            employeeDTO.setEmployeeDetails(new EmployeeDetailsSaveDTO(
+                                    employee.getEmployeeDetails().getId(),
+                                    employee.getEmployeeDetails().getDepartment(),
+                                    employee.getEmployeeDetails().getJobTitle(),
+                                    employee.getEmployeeDetails().getAddress()
+                            ));
+                        }
+                        return new StandardResponse(200, "Success", employeeDTO);
+                    })
+                    .orElseGet(() -> {
+                        logger.warn("Employee not found with ID: {}", id);
+                        return new StandardResponse(404, "Not Found", "Employee not found with ID: " + id);
+                    });
+        } catch (Exception e) {
+            logger.error("Error fetching employee: {}", e.getMessage(), e);
+            return new StandardResponse(500, "Error", "Error fetching employee.");
+        }
     }
-
 
     @Override
     public void deleteEmployee(long id) {
