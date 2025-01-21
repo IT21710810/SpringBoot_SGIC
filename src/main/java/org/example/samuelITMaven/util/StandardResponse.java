@@ -20,8 +20,8 @@ public class StandardResponse {
         return statusCode;
     }
 
-    public void setStatusCode(int statusCode) {
-        this.statusCode = statusCode;
+    public String getStatusMessage() {
+        return statusMessage;
     }
 
     public String getMessage() {
