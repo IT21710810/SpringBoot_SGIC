@@ -180,7 +180,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 }
 
             logger.info("Fetched {} employees successfully.", employeeDTOList.size());
-            return employeeDTOList;
+            return new StandardResponse(200, "Success", employeeDTOList);
         } catch (Exception e) {
             logger.error("Error fetching employees: {}", e.getMessage(), e);
             throw new RuntimeException("Error fetching employees.");
