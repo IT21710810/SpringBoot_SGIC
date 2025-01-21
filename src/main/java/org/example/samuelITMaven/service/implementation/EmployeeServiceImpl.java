@@ -104,8 +104,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void deleteEmployee(long id) {
-        if (employeeRepository.existsById(id)) {
+    public StandardResponse deleteEmployee(long id) {
+        logger.info("Deleting employee with ID: {}", id);
+        try {
+            if (!employeeRepository.existsById(id)) {
+                logger.warn("No employee found with ID: {}", id);
+                return new StandardResponse(404, "Not Found", "No employee found with ID: " + id);
+            }
             employeeRepository.deleteById(id);
         } else {
             throw new RuntimeException("No employee found with ID: " + id);
