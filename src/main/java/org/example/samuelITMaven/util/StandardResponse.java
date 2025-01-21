@@ -24,7 +24,7 @@ public class StandardResponse {
         return statusMessage;
     }
 
-    public String getMessage() {
+    public Object getMessage() {
         return message;
     }
 
