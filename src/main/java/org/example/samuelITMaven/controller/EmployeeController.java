@@ -44,8 +44,15 @@ public class EmployeeController {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<List<EmployeeDTO>> getAllEmployees() {
-        List<EmployeeDTO> employees = employeeService.getAllEmployee();
-        return ResponseEntity.ok(employees);
+    public ResponseEntity<StandardResponse> getAllEmployees() {
+        StandardResponse response = employeeService.getAllEmployees();
+        return createResponseEntity(response);
+    }
+
+    private ResponseEntity<StandardResponse> createResponseEntity(StandardResponse response) {
+        return new ResponseEntity<>(
+                response,
+                HttpStatus.valueOf(response.getStatusCode())
+        );
     }
 }
