@@ -183,7 +183,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             return new StandardResponse(200, "Success", employeeDTOList);
         } catch (Exception e) {
             logger.error("Error fetching employees: {}", e.getMessage(), e);
-            throw new RuntimeException("Error fetching employees.");
+            return new StandardResponse(500, "Error", "Error fetching employees.");
         }
     }
 
