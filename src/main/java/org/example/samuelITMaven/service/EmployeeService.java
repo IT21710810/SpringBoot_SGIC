@@ -8,13 +8,13 @@ import java.util.List;
 
 @Service
 public interface EmployeeService {
-    public String saveEmployee(EmployeeDTO employeeDTO);
+    StandardResponse saveEmployee(EmployeeDTO employeeDTO);
 
-    EmployeeDTO getId(long id);
+    StandardResponse getEmployeeById(long id);
 
-    void deleteEmployee(long id);
+    StandardResponse deleteEmployee(long id);
 
-    String updateEmployee(EmployeeUpdateDTO employeeUpdateDTO);
+    StandardResponse updateEmployee(EmployeeUpdateDTO employeeUpdateDTO);
 
-    List<EmployeeDTO> getAllEmployee();
+    StandardResponse getAllEmployees(); // This method fetches all employees
 }
