@@ -8,8 +8,10 @@ public class StandardResponse {
     private String statusMessage;
     private Object message;
 
-    public StandardResponse(int code, String message, Object data) {
-        this.statusCode = code;
+    // Constructor
+    public StandardResponse(int statusCode, String statusMessage, Object message) {
+        this.statusCode = statusCode;
+        this.statusMessage = statusMessage;
         this.message = message;
         this.data = data;
     }
