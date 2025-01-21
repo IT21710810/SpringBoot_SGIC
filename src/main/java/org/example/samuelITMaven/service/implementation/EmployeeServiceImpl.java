@@ -63,7 +63,9 @@ public class EmployeeServiceImpl implements EmployeeService {
             return new StandardResponse(201, "Success", "Employee saved successfully.");
         } catch (Exception e) {
             logger.error("Error saving employee: {}", e.getMessage(), e);
-            return "Error saving employee.";
+
+            // Returning a StandardResponse with an error message and status
+            return new StandardResponse(500, "Error", "Error saving employee.");
         }
     }
 
