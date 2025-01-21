@@ -32,9 +32,9 @@ public class EmployeeController {
 
 //    http://localhost:8080/delete-employee/5
     @DeleteMapping("/delete-employee/{id}")
-    public ResponseEntity<String> deleteEmployee(@PathVariable long id) {
-        employeeService.deleteEmployee(id);
-        return ResponseEntity.ok("Employee with ID " + id + " deleted successfully.");
+    public ResponseEntity<StandardResponse> deleteEmployee(@PathVariable long id) {
+        StandardResponse response = employeeService.deleteEmployee(id);
+        return createResponseEntity(response);
     }
 
     @PutMapping("/update")
