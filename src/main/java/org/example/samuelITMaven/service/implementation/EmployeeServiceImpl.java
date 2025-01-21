@@ -158,7 +158,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             List<Employee> employees = employeeRepository.findAll();
             if (employees.isEmpty()) {
                 logger.warn("No employees found.");
-                throw new RuntimeException("No employees found.");
+                return new StandardResponse(404, "Not Found", "No employees found.");
             }
 
             List<EmployeeDTO> employeeDTOList = employees.stream().map(employee -> {
