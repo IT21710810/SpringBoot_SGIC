@@ -122,7 +122,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
     @Override
-    public String updateEmployee(EmployeeUpdateDTO employeeUpdateDTO) {
+    public StandardResponse updateEmployee(EmployeeUpdateDTO employeeUpdateDTO) {
         logger.info("Updating employee with ID: {}", employeeUpdateDTO.getId());
         return employeeRepository.findById(employeeUpdateDTO.getId())
                 .map(employee -> {
