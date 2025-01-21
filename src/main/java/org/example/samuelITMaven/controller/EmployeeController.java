@@ -18,10 +18,7 @@ public class EmployeeController {
     @PostMapping("/save")
     public ResponseEntity<StandardResponse> saveEmployee(@RequestBody EmployeeDTO employeeDTO) {
         StandardResponse response = employeeService.saveEmployee(employeeDTO);
-        return new ResponseEntity<>(
-                response,
-                HttpStatus.valueOf(response.getStatusCode())
-        );
+        return createResponseEntity(response);
     }
 //http://localhost:8080/get-by-id?id=5
     @GetMapping("/get-by-id")
