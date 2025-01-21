@@ -24,9 +24,9 @@ public class EmployeeController {
 
     // http://localhost:8080/api/v1/employee/get-by-id?id=5
     @GetMapping("/get-by-id")
-    public ResponseEntity<EmployeeDTO> getEmployeeById(@RequestParam long id) {
-        EmployeeDTO employeeDTO = employeeService.getId(id);
-        return ResponseEntity.ok(employeeDTO);
+    public ResponseEntity<StandardResponse> getEmployeeById(@RequestParam long id) {
+        StandardResponse response = employeeService.getEmployeeById(id);
+        return createResponseEntity(response);
     }
 
 //    http://localhost:8080/delete-employee/5
