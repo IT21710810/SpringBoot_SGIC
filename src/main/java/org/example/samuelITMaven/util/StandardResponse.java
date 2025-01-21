@@ -5,8 +5,8 @@ package org.example.samuelITMaven.util;
 //@NoArgsConstructor
 public class StandardResponse {
     private int statusCode;
-    private String message;
-    private Object data;
+    private String statusMessage;
+    private Object message;
 
     public StandardResponse(int code, String message, Object data) {
         this.statusCode = code;
