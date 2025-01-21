@@ -112,8 +112,11 @@ public class EmployeeServiceImpl implements EmployeeService {
                 return new StandardResponse(404, "Not Found", "No employee found with ID: " + id);
             }
             employeeRepository.deleteById(id);
-        } else {
-            throw new RuntimeException("No employee found with ID: " + id);
+            logger.info("Employee deleted successfully with ID: {}", id);
+            return new StandardResponse(200, "Success", "Employee deleted successfully.");
+        } catch (Exception e) {
+            logger.error("Error deleting employee: {}", e.getMessage(), e);
+            return new StandardResponse(500, "Error", "Error deleting employee.");
         }
     }
 
