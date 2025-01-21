@@ -28,7 +28,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository employeeRepository;
 
     @Override
-    public String saveEmployee(EmployeeDTO employeeDTO) {
+    public StandardResponse saveEmployee(EmployeeDTO employeeDTO) {
+        logger.info("Starting saveEmployee with data: {}", employeeDTO);
         try {
             logger.info("Attempting to save employee:");
 
