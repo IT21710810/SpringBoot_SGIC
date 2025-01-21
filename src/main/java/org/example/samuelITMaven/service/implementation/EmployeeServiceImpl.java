@@ -152,7 +152,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<EmployeeDTO> getAllEmployee() {
+    public StandardResponse getAllEmployees() {
         logger.info("Fetching all employees.");
         try {
             List<Employee> employees = employeeRepository.findAll();
